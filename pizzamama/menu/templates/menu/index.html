@@ -1,0 +1,38 @@
+<!-- Pour charger un fichier dans le dossier 'static' -->
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu des pizzas</title>
+    <!-- Pour charger ma feuille de style dans le dossier 'static' -->
+    <link rel="stylesheet" href="{% static 'menu/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div id="div_logo">
+            <a href="{% url 'main:index' %}">
+                <img id="small_logo" src="{% static 'menu/images/small_logo.png' %}" alt="logo">
+            </a>
+        </div>
+
+        <div class="menu_title">
+            <h1>Les pizzas</h1>
+        </div>
+
+        <div class="menu_list">
+            <!-- Je boucle sur toutes les pizzas pour récupérer les informations de chaque pizza et accéder par exemple à leur nom -->
+            {% for pizza in pizzas %}
+                <div class="menu_list_item">
+                    <span class="menu_list_title">{{pizza.name}}</span>
+                    <span class="menu_list_price">{{pizza.price | floatformat:2}}€</span>   <!-- Gestion du format du prix -->
+                    <div><span class="menu_list_ingredients">{{pizza.ingredients}}</span></div>
+                    {% if pizza.vegetarian %}
+                        <span class="menu_list_vegetarian">Végétarienne</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
