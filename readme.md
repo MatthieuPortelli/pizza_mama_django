@@ -3,8 +3,8 @@
 ## Templates (TODO)
 
 ## Fonctionnalités
-[x] Consulter la carte des pizzas 
-[x] Pour l'admin créer, modifier, supprimer les pizzas
+[x] Consulter la carte des pizzas  
+[x] Pour l'admin créer, modifier, supprimer les pizzas  
 
 ## Pistes d'améliorations
 - Index
