@@ -21,4 +21,5 @@ urlpatterns = [
     path('menu/', include('menu.urls')),    # Dans l'url si je tape /menu, il va aller chercher le fichier urls.py dans l'app 'menu'
     path('api/', include('menu.api_urls')),
     path('', include('main.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]

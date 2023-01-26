@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'menu.apps.MenuConfig',
     'main.apps.MainConfig',
     'django_extensions',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'pizzamama.urls'
@@ -131,3 +135,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# NODE.JS
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
+# Pour Tailwind
+TAILWIND_APP_NAME = 'theme'
+
+# Pour permettre à Tailwind de rafraichir automatiquement ma page
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

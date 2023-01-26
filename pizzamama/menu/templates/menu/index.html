@@ -1,37 +1,48 @@
 <!-- Pour charger un fichier dans le dossier 'static' -->
 {% load static %}
+<!-- TAILWIND -->
+{% load tailwind_tags %}
 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Menu des pizzas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Pour charger ma feuille de style dans le dossier 'static' -->
-    <link rel="stylesheet" href="{% static 'menu/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'menu/style.css' %}"> -->
+    <!-- TAILWIND -->
+    {% tailwind_css %}
 </head>
-<body>
-    <div class="container">
-        <div id="div_logo">
-            <a href="{% url 'main:index' %}">
-                <img id="small_logo" src="{% static 'menu/images/small_logo.png' %}" alt="logo">
-            </a>
-        </div>
+<body style="background-image: url('/static/menu/images/menu_background.jpg');" class="bg-no-repeat bg-cover bg-center bg-fixed font-arial">
+<!--    <div class="my-6 mx-6 text-white w-auto sm:w-96">-->
+    <div class="w-screen bg-black bg-opacity-30">
+        <div class="m-0 p-8 sm:p-12 md:p-16 lg:pl-32 text-white max-w-3xl">
+            <div class="">
+                <a href="{% url 'main:index' %}">
+                    <img src="{% static 'menu/images/small_logo.png' %}" alt="logo">
+                </a>
+            </div>
 
-        <div class="menu_title">
-            <h1>Les pizzas</h1>
-        </div>
+            <div class="mt-6">
+                <h1 class="text-2xl font-bold rounded-lg bg-orange-500 px-5 py-2 w-fit">Les Pizzas</h1>
+            </div>
 
-        <div class="menu_list">
-            <!-- Je boucle sur toutes les pizzas pour récupérer les informations de chaque pizza et accéder par exemple à leur nom -->
-            {% for pizza in pizzas %}
-                <div class="menu_list_item">
-                    <span class="menu_list_title">{{pizza.name}}</span>
-                    <span class="menu_list_price">{{pizza.price | floatformat:2}}€</span>   <!-- Gestion du format du prix -->
-                    <div><span class="menu_list_ingredients">{{pizza.ingredients}}</span></div>
-                    {% if pizza.vegetarian %}
-                        <span class="menu_list_vegetarian">Végétarienne</span>
-                    {% endif %}
-                </div>
-            {% endfor %}
+            <div class="mt-6">
+                <!-- Je boucle sur toutes les pizzas pour récupérer les informations de chaque pizza et accéder par exemple à leur nom -->
+                {% for pizza in pizzas %}
+                    <div class="mb-4">
+                        <div class="flex justify-between">
+                            <div class="text-xl font-bold">{{pizza.name}}</div>
+                            <div class="text-orange-500 rounded-full bg-black bg-opacity-70 px-2 py-1">{{pizza.price | floatformat:2}}€</div>   <!-- Gestion du format du prix -->
+                        </div>
+
+                        <div class="mt-1 text-gray-200">{{pizza.ingredients | title}}</div>
+                        {% if pizza.vegetarian %}
+                            <div class="mt-3"><span class="text-sm text-black rounded-full bg-orange-500 px-2 py-1">Végétarienne</span></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </body>
